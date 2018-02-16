@@ -7,13 +7,38 @@ import Box from '../box/box.jsx';
 import AssetButton from '../asset-button/asset-button.jsx';
 import CostumeCanvas from '../costume-canvas/costume-canvas.jsx';
 import styles from './stage-selector.css';
-import backdropIcon from './icon--backdrop.svg';
+
+import backdropIcon from '../asset-button/icon--backdrop.svg';
+import cameraIcon from '../asset-button/icon--camera.svg';
+import fileUploadIcon from '../asset-button/icon--file-upload.svg';
+import paintIcon from '../asset-button/icon--paint.svg';
+import surpriseIcon from '../asset-button/icon--surprise.svg';
 
 const messages = defineMessages({
-    addBackdrop: {
-        id: 'gui.stageSelector.targetPaneAddBackdrop',
-        description: 'Button to add a backdrop in the target pane',
-        defaultMessage: 'Add Backdrop'
+    addBackdropFromLibrary: {
+        id: 'gui.spriteSelector.addBackdropFromLibrary',
+        description: 'Button to add a stage in the target pane from library',
+        defaultMessage: 'Library'
+    },
+    addBackdropFromPaint: {
+        id: 'gui.stageSelector.addBackdropFromPaint',
+        description: 'Button to add a stage in the target pane from paint',
+        defaultMessage: 'Paint'
+    },
+    addBackdropFromSurprise: {
+        id: 'gui.stageSelector.addBackdropFromSurprise',
+        description: 'Button to add a random stage in the target pane',
+        defaultMessage: 'Surprise'
+    },
+    addBackdropFromFile: {
+        id: 'gui.stageSelector.addBackdropFromFile',
+        description: 'Button to add a stage in the target pane from file',
+        defaultMessage: 'Coming Soon'
+    },
+    addBackdropFromCamera: {
+        id: 'gui.stageSelector.addBackdropFromCamera',
+        description: 'Button to add a stage in the target pane from camera',
+        defaultMessage: 'Coming Soon'
     }
 });
 
@@ -25,6 +50,8 @@ const StageSelector = props => {
         url,
         onClick,
         onNewBackdropClick,
+        onSurpriseBackdropClick,
+        onEmptyBackdropClick,
         ...componentProps
     } = props;
     return (
@@ -57,7 +84,25 @@ const StageSelector = props => {
             <AssetButton
                 className={styles.addButton}
                 img={backdropIcon}
-                title={intl.formatMessage(messages.addBackdrop)}
+                moreButtons={[
+                    {
+                        title: intl.formatMessage(messages.addBackdropFromCamera),
+                        img: cameraIcon
+                    }, {
+                        title: intl.formatMessage(messages.addBackdropFromFile),
+                        img: fileUploadIcon
+                    }, {
+                        title: intl.formatMessage(messages.addBackdropFromSurprise),
+                        img: surpriseIcon,
+                        onClick: onSurpriseBackdropClick // TODO NEED REAL FUNCTION
+
+                    }, {
+                        title: intl.formatMessage(messages.addBackdropFromPaint),
+                        img: paintIcon,
+                        onClick: onEmptyBackdropClick // TODO NEED REAL FUNCTION
+                    }
+                ]}
+                title={intl.formatMessage(messages.addBackdropFromLibrary)}
                 onClick={onNewBackdropClick}
             />
         </Box>

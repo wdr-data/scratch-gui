@@ -37,6 +37,7 @@ class GUI extends React.Component {
             children,
             projectData, // eslint-disable-line no-unused-vars
             vm,
+            tab,
             ...componentProps
         } = this.props;
         return (

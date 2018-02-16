@@ -1,5 +1,14 @@
 @import "../../css/colors.css";
 
+$main-button-size: 2.75rem;
+$more-button-size: 2.25rem;
+
+.menu-container {
+    display: flex;
+    flex-direction: column-reverse;
+    transition: 0.2s;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -9,13 +18,112 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: $motion-primary;
     border-radius: 100%;
-    width: 2.75rem;
-    height: 2.75rem;
+    width: $main-button-size;
+    height: $main-button-size;
     outline: none;
     border: none;
+    transition: background-color 0.2s;
 }
 
+.menu-container > .container { /* TODO use class names instead of first child */
+    z-index: 20; /* TODO reorder layout to prevent z-index need */
+}
+
+
 .icon {
-    width: 1.75rem;
-    height: 1.75rem;
+    width: calc($main-button-size - 1rem);
+    height: calc($main-button-size - 1rem);
+}
+
+.more-buttons-outer {
+    /*
+        Need to use two divs to set different overflow x/y
+        which is needed to get animation to look right while
+        allowing the tooltips to be visible.
+    */
+    overflow-y: hidden;
+    margin-bottom: calc($main-button-size / -2);
+    padding-bottom: calc($main-button-size / 2);
+    background: $motion-tertiary;
+    border-top-left-radius: $more-button-size;
+    border-top-right-radius: $more-button-size;
+    width: $more-button-size;
+    margin-left: calc(($main-button-size - $more-button-size) / 2);
+}
+
+.more-buttons {
+    max-height: 0;
+    transition: max-height 1s;
+
+    overflow-x: visible;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: 10; /* TODO re-order layout to not need z-indexing */
+}
+
+.more-buttons .icon {
+    width: calc($more-button-size - 1rem);
+    height: calc($more-button-size - 1rem);
+}
+
+.expanded .more-buttons {
+    max-height: 1000px; /* Needs to be a value to animate */
+}
+
+.more-buttons .container { /* TODO use classnames instead of structure */
+    width: $more-button-size;
+    height: $more-button-size;
+    border-radius: 0;
+    background: $motion-tertiary;
+}
+
+.more-buttons:first-child { /* TODO use classnames instead of structure */
+    border-top-right-radius: $more-button-size;
+    border-top-left-radius: $more-button-size;
+}
+
+.container:hover {
+    background: $pen-primary;
+}
+
+.more-buttons .container:hover {
+    background: $pen-primary;
+}
+
+.more-buttons .container.coming-soon:hover {
+    background: $data-primary;
+}
+
+.more-buttons .container.coming-soon > img { /* TODO replace w/ sELECTOR */
+    opacity: 0.5;
+}
+
+
+/* TOOLTIP STUFF */
+/* TODO mostly copied from coming soon, should refactor */
+.tooltip {
+    background-color: $pen-primary !important; /* TODO not the right color */
+    opacity: 1 !important;
+    border: 1px solid hsla(0, 0%, 0%, .1) !important;
+    /* border-radius: .25rem !important; */
+    box-shadow: 0 0 .5rem hsla(0, 0%, 0%, .25) !important;
+    /* padding: .75rem 1rem !important; */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    /* font-size: 1rem !important; */
+    /* line-height: 1.25rem !important; */
+    /* z-index: 100 !important; */
+}
+
+.tooltip:after {
+    /* TODO need to fix arrow color */
+}
+
+.coming-soon-tooltip {
+    background-color: $data-primary !important; /* TODO probs not right color */
+}
+
+.coming-soon-tooltip:after {
+    /* TODO need to fix arrow color */
 }

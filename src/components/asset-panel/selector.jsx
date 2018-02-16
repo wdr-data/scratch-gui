@@ -34,14 +34,17 @@ const Selector = props => {
                 ))}
             </Box>
             <Box className={styles.newButtons}>
-                {buttons.map(({message, img, onClick}, index) => (
-                    <AssetButton
-                        img={img}
-                        key={index}
-                        title={message}
-                        onClick={onClick}
-                    />
-                ))}
+                {/* TODO clean up this API */}
+                <AssetButton
+                    img={buttons[0].img}
+                    moreButtons={buttons.slice(1).map(button => ({
+                        title: button.message,
+                        img: button.img,
+                        onClick: button.onClick
+                    }))}
+                    title={buttons[0].message}
+                    onClick={buttons[0].onClick}
+                />
             </Box>
         </Box>
     );

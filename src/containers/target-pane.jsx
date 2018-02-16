@@ -9,7 +9,10 @@ import {
     closeSpriteLibrary
 } from '../reducers/modals';
 
+import {activateTab, COSTUMES_TAB_INDEX} from '../reducers/navigation';
+
 import TargetPaneComponent from '../components/target-pane/target-pane.jsx';
+import spriteLibraryContent from '../lib/libraries/sprites.json';
 
 class TargetPane extends React.Component {
     constructor (props) {
@@ -23,7 +26,9 @@ class TargetPane extends React.Component {
             'handleChangeSpriteY',
             'handleDeleteSprite',
             'handleDuplicateSprite',
-            'handleSelectSprite'
+            'handleSelectSprite',
+            'handleSurpriseSpriteClick',
+            'handlePaintSpriteClick'
         ]);
     }
     handleChangeSpriteDirection (direction) {
@@ -53,6 +58,22 @@ class TargetPane extends React.Component {
     handleSelectSprite (id) {
         this.props.vm.setEditingTarget(id);
     }
+    handleSurpriseSpriteClick () {
+        const item = spriteLibraryContent[Math.floor(Math.random() * spriteLibraryContent.length)];
+        this.props.vm.addSprite2(JSON.stringify(item.json));
+    }
+    handlePaintSpriteClick () {
+        spriteLibraryContent.forEach(item => {
+            if (item.name === 'Empty') {
+                this.props.vm.addSprite2(JSON.stringify(item.json))
+                    .then(() => {
+                        this.props.onActivateTab(COSTUMES_TAB_INDEX);
+                    });
+
+                return;
+            }
+        });
+    }
     render () {
         return (
             <TargetPaneComponent
@@ -66,6 +87,8 @@ class TargetPane extends React.Component {
                 onDeleteSprite={this.handleDeleteSprite}
                 onDuplicateSprite={this.handleDuplicateSprite}
                 onSelectSprite={this.handleSelectSprite}
+                onSurpriseSpriteClick={this.handleSurpriseSpriteClick}
+                onPaintSpriteClick={this.handlePaintSpriteClick}
             />
         );
     }
@@ -105,6 +128,9 @@ const mapDispatchToProps = dispatch => ({
     },
     onRequestCloseBackdropLibrary: () => {
         dispatch(closeBackdropLibrary());
+    },
+    onActivateTab: (t) => {
+        dispatch(activateTab(t));
     }
 });
 

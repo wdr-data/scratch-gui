@@ -140,7 +140,8 @@
         For making the sprite-selector a scrollable pane
         @todo: Not working in Safari
     */
-    overflow: hidden;
+    /* TODO this also breaks the thermometer menu */
+    /* overflow: hidden; */
 }
 
 .extension-button-container {

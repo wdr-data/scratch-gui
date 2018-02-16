@@ -7,7 +7,7 @@ import extensionLibraryContent from '../lib/libraries/extensions/index';
 
 import analytics from '../lib/analytics';
 import LibraryComponent from '../components/library/library.jsx';
-import extensionIcon from '../components/sprite-selector/icon--sprite.svg';
+import extensionIcon from '../components/asset-button/icon--sprite.svg';
 
 class ExtensionLibrary extends React.PureComponent {
     constructor (props) {
