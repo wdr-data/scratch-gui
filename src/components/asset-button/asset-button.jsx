@@ -41,6 +41,7 @@ class AssetButton extends React.Component {
         return (event) => {
             this.setState({forceHide: true, isOpen: false}, () => {
                 if (fn) fn(event);
+                setTimeout(() => this.setState({forceHide: false}))
             });
         }
     }
