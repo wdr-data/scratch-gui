@@ -7,6 +7,7 @@ $more-button-size: 2.25rem;
     display: flex;
     flex-direction: column-reverse;
     transition: 0.2s;
+    position: relative;
 }
 
 .container {
@@ -42,19 +43,23 @@ $more-button-size: 2.25rem;
         allowing the tooltips to be visible.
     */
     overflow-y: hidden;
-    margin-bottom: calc($main-button-size / -2);
-    padding-bottom: calc($main-button-size / 2);
+
     background: $motion-tertiary;
     border-top-left-radius: $more-button-size;
     border-top-right-radius: $more-button-size;
     width: $more-button-size;
     margin-left: calc(($main-button-size - $more-button-size) / 2);
+
+    position: absolute;
+    bottom: calc($main-button-size);
+
+    margin-bottom: calc($main-button-size / -2);
+    padding-bottom: calc($main-button-size / 2);
 }
 
 .more-buttons {
     max-height: 0;
     transition: max-height 1s;
-
     overflow-x: visible;
 
     display: flex;
@@ -70,6 +75,9 @@ $more-button-size: 2.25rem;
 
 .expanded .more-buttons {
     max-height: 1000px; /* Needs to be a value to animate */
+}
+.force-hidden .more-buttons {
+    display: none;
 }
 
 .more-buttons .container { /* TODO use classnames instead of structure */

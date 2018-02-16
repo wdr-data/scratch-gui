@@ -11,10 +11,12 @@ class AssetButton extends React.Component {
         super(props);
         bindAll(this, [
             'handleClosePopover',
-            'handleToggleOpenState'
+            'handleToggleOpenState',
+            'clickDelayerFactory'
         ]);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            forceHide: false
         };
     }
     handleClosePopover () {
@@ -28,8 +30,17 @@ class AssetButton extends React.Component {
             clearTimeout(this.closeTimeoutId);
             this.closeTimeoutId = null;
         } else {
+            // console.log('toggling: next-' + nextOpenState + ' force-' + nextOpenState ? false : this.state.forceHide)
             this.setState({
-                isOpen: !this.state.isOpen
+                isOpen: true,
+                forceHide: false
+            });
+        }
+    }
+    clickDelayerFactory (fn) {
+        return (event) => {
+            this.setState({forceHide: true, isOpen: false}, () => {
+                fn(event);
             });
         }
     }
@@ -47,7 +58,8 @@ class AssetButton extends React.Component {
         return (
             <div
                 className={classNames(styles.menuContainer, className, {
-                    [styles.expanded]: this.state.isOpen
+                    [styles.expanded]: this.state.isOpen,
+                    [styles.forceHidden]: this.state.forceHide
                 })}
                 onMouseEnter={this.handleToggleOpenState}
                 onMouseLeave={this.handleClosePopover}
@@ -58,7 +70,7 @@ class AssetButton extends React.Component {
                     data-for={mainTooltipId}
                     data-place={'left'}
                     data-tip={mainTitle}
-                    onClick={onClick}
+                    onClick={this.clickDelayerFactory(onClick)}
                 >
                     <img
                         className={styles.icon}
@@ -87,7 +99,7 @@ class AssetButton extends React.Component {
                                         data-place={'left'}
                                         data-tip={title}
                                         // disabled={isComingSoon}
-                                        onClick={handleClick}
+                                        onClick={this.clickDelayerFactory(handleClick)}
                                     >
                                         <img
                                             className={styles.icon}
