@@ -40,7 +40,7 @@ class AssetButton extends React.Component {
     clickDelayerFactory (fn) {
         return (event) => {
             this.setState({forceHide: true, isOpen: false}, () => {
-                fn(event);
+                if (fn) fn(event);
             });
         }
     }
