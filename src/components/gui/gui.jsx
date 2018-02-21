@@ -171,10 +171,10 @@ GUIComponent.propTypes = {
     children: PropTypes.node,
     enableExtensions: PropTypes.bool,
     feedbackFormVisible: PropTypes.bool,
+    importInfoVisible: PropTypes.bool,
     intl: intlShape.isRequired,
     onExtensionButtonClick: PropTypes.func,
     onTabSelect: PropTypes.func,
-    importInfoVisible: PropTypes.bool,
     previewInfoVisible: PropTypes.bool,
     tabIndex: PropTypes.number,
     vm: PropTypes.instanceOf(VM).isRequired
