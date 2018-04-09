@@ -672,6 +672,54 @@ const xmlClose = '</xml>';
  * @returns {string} - a ScratchBlocks-style XML document for the contents of the toolbox.
  */
 const makeToolboxXML = function (isStage, targetId, categoriesXML) {
+    return `
+<xml id="toolbox-categories" style="display: none">
+    <category name="Motion">
+        <block type="motion_movesteps">
+            <value name="STEPS">
+                <shadow type="math_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+    <category name="Events">
+        <block type="event_whenflagclicked"></block>
+        <block type="event_whenbroadcastreceived">
+            <value name="CHOICE">
+                <shadow type="dropdown_whenbroadcast">
+                    <field name="CHOICE">blue</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="event_broadcast">
+            <value name="CHOICE">
+                <shadow type="dropdown_broadcast">
+                    <field name="CHOICE">blue</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+    <category name="Control">
+        <block type="control_forever"></block>
+        <block type="control_repeat">
+            <value name="TIMES">
+                <shadow type="math_number">
+                    <field name="NUM">4</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="control_stop"></block>
+        <block type="control_wait">
+            <value name="DURATION">
+                <shadow type="math_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+    </category>
+</xml>`;
+
     const gap = [categorySeparator];
 
     const everything = [

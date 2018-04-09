@@ -1,4 +1,4 @@
-import ScratchBlocks from 'scratch-blocks';
+import ScratchBlocks from 'scratch-blocks/dist/horizontal';
 
 /**
  * Connect scratch blocks with the vm
@@ -87,7 +87,7 @@ export default function (vm) {
 
     const controlColors = ScratchBlocks.Colours.control;
 
-    ScratchBlocks.Blocks.sound_sounds_menu.init = function () {
+/*    ScratchBlocks.Blocks.sound_sounds_menu.init = function () {
         const json = jsonForMenuBlock('SOUND_MENU', soundsMenu, soundColors, []);
         this.jsonInit(json);
     };
@@ -163,6 +163,6 @@ export default function (vm) {
         const monitoredBlock = vm.runtime.monitorBlocks._blocks[blockId];
         return monitoredBlock ? monitoredBlock.isMonitored : false;
     };
-
+*/
     return ScratchBlocks;
 }
