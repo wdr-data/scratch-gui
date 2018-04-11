@@ -65,6 +65,10 @@ const GUIComponent = props => {
         );
     }
 
+    const calcHeight = () =>
+      window.innerHeight*0.8
+
+
     const tabClassNames = {
         tabs: styles.tabs,
         tab: classNames(tabStyles.reactTabsTab, styles.tab),
@@ -172,7 +176,7 @@ const GUIComponent = props => {
                             <MediaQuery minWidth={layout.fullSizeMinWidth}>{isFullSize => {
                                 return isRendererSupported ? (
                                     <Stage
-                                        height={isFullSize ? layout.fullStageHeight : layout.smallerStageHeight}
+                                        height={calcHeight()}
                                         shrink={0}
                                         vm={vm}
                                         width={isFullSize ? layout.fullStageWidth : layout.smallerStageWidth}
