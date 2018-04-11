@@ -54,7 +54,7 @@ class Stage extends React.Component {
         this.attachRectEvents();
         this.attachMouseEvents(this.canvas);
         this.updateRect();
-        this.renderer = new Renderer(this.canvas);
+        this.renderer = new Renderer(this.canvas, -240, 240, -240, 240);
         this.props.vm.attachRenderer(this.renderer);
         this.props.vm.runtime.addListener('QUESTION', this.questionListener);
     }
