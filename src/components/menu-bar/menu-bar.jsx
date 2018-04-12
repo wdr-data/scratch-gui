@@ -39,16 +39,6 @@ const MenuBar = props => (
                 <div className={classNames(styles.menuItem)}>
                     <ComingSoonTooltip
                         className={styles.comingSoon}
-                        place="right"
-                        tooltipClassName={styles.comingSoonTooltip}
-                        tooltipId="menubar-selector"
-                    >
-                        <LanguageSelector />
-                    </ComingSoonTooltip>
-                </div>
-                <div className={classNames(styles.menuItem)}>
-                    <ComingSoonTooltip
-                        className={styles.comingSoon}
                         place="bottom"
                         tooltipClassName={styles.comingSoonTooltip}
                         tooltipId="file-menu"
@@ -98,70 +88,6 @@ const MenuBar = props => (
                     </Button>
                 </ComingSoonTooltip>
             </div>
-            <div className={classNames(styles.menuItem, styles.communityButtonWrapper)}>
-                <ComingSoonTooltip
-                    className={styles.comingSoon}
-                    place="bottom"
-                    tooltipClassName={styles.comingSoonTooltip}
-                    tooltipId="community-button"
-                >
-                    <Button
-                        className={classNames(styles.communityButton)}
-                        iconClassName={styles.communityButtonIcon}
-                        iconSrc={communityIcon}
-                    >
-                        <FormattedMessage
-                            defaultMessage="See Community"
-                            description="Label for see community button"
-                            id="gui.menuBar.seeCommunity"
-                        />
-                    </Button>
-                </ComingSoonTooltip>
-            </div>
-        </div>
-        <div className={classNames(styles.menuItem, styles.feedbackButtonWrapper)}>
-            <Button
-                className={styles.feedbackButton}
-                iconSrc={feedbackIcon}
-                onClick={props.onGiveFeedback}
-            >
-                <FormattedMessage
-                    defaultMessage="Give Feedback"
-                    description="Label for feedback form modal button"
-                    id="gui.menuBar.giveFeedback"
-                />
-            </Button>
-        </div>
-        <div className={styles.accountInfoWrapper}>
-            <ComingSoonTooltip
-                className={styles.comingSoon}
-                place="bottom"
-                tooltipId="mystuff"
-            >
-                <div className={styles.mystuffButton}>
-                    <img
-                        className={styles.mystuffIcon}
-                        src={mystuffIcon}
-                    />
-                </div>
-            </ComingSoonTooltip>
-            <ComingSoonTooltip
-                className={styles.comingSoon}
-                place="left"
-                tooltipId="account-nav"
-            >
-                <div className={styles.accountNavMenu}>
-                    <img
-                        className={styles.profileIcon}
-                        src={profileIcon}
-                    />
-                    <span>scratch-cat</span>
-                    <img
-                        className={styles.dropdownCaretIcon}
-                        src={dropdownCaret}
-                    />
-                </div>
-            </ComingSoonTooltip>
         </div>
     </Box>
 );
