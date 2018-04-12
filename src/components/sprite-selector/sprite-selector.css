@@ -4,10 +4,7 @@
     flex-grow: 1;
     position: relative;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin-right: calc($space / 2);
     background-color: #f9f9f9;
-    border-top-right-radius: $space;
-    border-top-left-radius: $space;
     border-color: #dbdbdb;
     border-width: 1px;
     border-style: solid;
@@ -51,7 +48,6 @@
 
 .items-wrapper {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
 
     padding-top: calc($space / 2);
