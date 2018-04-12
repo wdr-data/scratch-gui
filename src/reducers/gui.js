@@ -14,6 +14,7 @@ import toolboxReducer from './toolbox';
 import vmReducer from './vm';
 import stageSizeReducer from './stage-size';
 import {ScratchPaintReducer} from 'scratch-paint';
+import layoutModeReducer from './layout-mode';
 
 export default combineReducers({
     blockDrag: blockDragReducer,
@@ -22,6 +23,7 @@ export default combineReducers({
     editorTab: editorTabReducer,
     hoveredTarget: hoveredTargetReducer,
     intl: intlReducer,
+    layoutMode: layoutModeReducer,
     stageSize: stageSizeReducer,
     menus: menuReducer,
     modals: modalReducer,
