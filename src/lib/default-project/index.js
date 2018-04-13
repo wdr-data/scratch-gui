@@ -7,6 +7,8 @@ import meowWav from '!buffer-loader!./83c36d806dc92327b9e7049a565c6bff.wav';
 import backdrop from '!buffer-loader!./739b5e2a2435f6e1ec2993791b423146.png';
 import costume1 from '!raw-loader!./09dc888b0b7df19f70d81588ae73420e.svg';
 import costume2 from '!raw-loader!./3696356a03a8d938318876a593572843.svg';
+import mausCostume1 from '!raw-loader!./maus_hello_1.svg';
+import mausCostume2 from '!raw-loader!./maus_hello_2.svg';
 /* eslint-enable import/no-unresolved */
 
 const encoder = new TextEncoder();
@@ -40,4 +42,14 @@ export default [{
     assetType: 'ImageVector',
     dataFormat: 'SVG',
     data: encoder.encode(costume2)
+}, {
+    id: '1f0f4ccc0da94aa79b1fdd9b6ce5cfb3',
+    assetType: 'ImageVector',
+    dataFormat: 'SVG',
+    data: encoder.encode(mausCostume1)
+}, {
+    id: 'e07eb60176cd4313afb39e7855272d11',
+    assetType: 'ImageVector',
+    dataFormat: 'SVG',
+    data: encoder.encode(mausCostume2)
 }];

@@ -76,7 +76,7 @@
 				"rotationCenterY": 55,
 				"skinId": 0,
 				"dataFormat": "svg",
-				"assetId": "09dc888b0b7df19f70d81588ae73420e"
+				"assetId": "1f0f4ccc0da94aa79b1fdd9b6ce5cfb3"
 			},
 			"costumeCount": 2,
 			"visible": true,
@@ -92,7 +92,7 @@
 					"rotationCenterY": 55,
 					"skinId": 0,
 					"dataFormat": "svg",
-					"assetId": "09dc888b0b7df19f70d81588ae73420e"
+					"assetId": "1f0f4ccc0da94aa79b1fdd9b6ce5cfb3"
 				},
 				{
 					"name": "costume2",
@@ -101,7 +101,7 @@
 					"rotationCenterY": 55,
 					"skinId": 1,
 					"dataFormat": "svg",
-					"assetId": "3696356a03a8d938318876a593572843"
+					"assetId": "e07eb60176cd4313afb39e7855272d11"
 				}
 			],
 			"sounds": [
