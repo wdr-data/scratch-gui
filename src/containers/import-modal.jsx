@@ -95,7 +95,6 @@ const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
     onBack: () => {
         dispatch(closeImportInfo());
-        dispatch(openPreviewInfo());
     },
     onCancel: () => {
         dispatch(closeImportInfo());

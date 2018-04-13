@@ -9,7 +9,7 @@ import Button from '../button/button.jsx';
 import {ComingSoonTooltip} from '../coming-soon/coming-soon.jsx';
 import LanguageSelector from '../../containers/language-selector.jsx';
 
-import {openFeedbackForm} from '../../reducers/modals';
+import {openFeedbackForm, openImportInfo} from '../../reducers/modals';
 
 import styles from './menu-bar.css';
 
@@ -88,12 +88,22 @@ const MenuBar = props => (
                     </Button>
                 </ComingSoonTooltip>
             </div>
+            <div className={classNames(styles.menuItem)}>
+                <button
+                    className={styles.viewProjectButton}
+                    title="viewproject"
+                    onClick={props.onImportProject}
+                >
+                    Import
+                </button>
+            </div>
         </div>
     </Box>
 );
 
 MenuBar.propTypes = {
-    onGiveFeedback: PropTypes.func.isRequired
+    onGiveFeedback: PropTypes.func.isRequired,
+    onImportProject: PropTypes.func
 };
 
 const mapStateToProps = () => ({});
@@ -101,6 +111,9 @@ const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
     onGiveFeedback: () => {
         dispatch(openFeedbackForm());
+    },
+    onImportProject: () => {
+        dispatch(openImportInfo());
     }
 });
 
