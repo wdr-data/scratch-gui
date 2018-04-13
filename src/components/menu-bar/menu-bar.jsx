@@ -18,7 +18,7 @@ import profileIcon from './icon--profile.png';
 import feedbackIcon from './icon--feedback.svg';
 import communityIcon from './icon--see-community.svg';
 import dropdownCaret from '../language-selector/dropdown-caret.svg';
-import scratchLogo from './scratch-logo.svg';
+import scratchLogo from './maus_logo_bg.svg';
 
 const MenuBar = props => (
     <Box
