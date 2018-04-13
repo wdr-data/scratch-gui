@@ -36,67 +36,16 @@ const MenuBar = props => (
                         src={scratchLogo}
                     />
                 </div>
-                <div className={classNames(styles.menuItem)}>
-                    <ComingSoonTooltip
-                        className={styles.comingSoon}
-                        place="bottom"
-                        tooltipClassName={styles.comingSoonTooltip}
-                        tooltipId="file-menu"
-                    >
-                        <div className={classNames(styles.fileMenu)}>File</div>
-                    </ComingSoonTooltip>
-                </div>
-                <div className={classNames(styles.menuItem)}>
-                    <ComingSoonTooltip
-                        className={styles.comingSoon}
-                        place="bottom"
-                        tooltipClassName={styles.comingSoonTooltip}
-                        tooltipId="edit-menu"
-                    >
-                        <div className={classNames(styles.editMenu)}>Edit</div>
-                    </ComingSoonTooltip>
-                </div>
             </div>
-            <div className={classNames(styles.divider)} />
-            <div className={classNames(styles.menuItem)}>
-                <ComingSoonTooltip
-                    className={styles.comingSoon}
-                    place="bottom"
-                    tooltipClassName={styles.comingSoonTooltip}
-                    tooltipId="title-field"
-                >
-                    <input
-                        disabled
-                        className={classNames(styles.titleField)}
-                        placeholder="Untitled-1"
-                    />
-                </ComingSoonTooltip>
-            </div>
-            <div className={classNames(styles.menuItem)}>
-                <ComingSoonTooltip
-                    className={styles.comingSoon}
-                    place="bottom"
-                    tooltipClassName={styles.comingSoonTooltip}
-                    tooltipId="share-button"
-                >
-                    <Button className={classNames(styles.shareButton)}>
-                        <FormattedMessage
-                            defaultMessage="Share"
-                            description="Label for project share button"
-                            id="gui.menuBar.share"
-                        />
-                    </Button>
-                </ComingSoonTooltip>
-            </div>
-            <div className={classNames(styles.menuItem)}>
-                <button
-                    className={styles.viewProjectButton}
-                    title="viewproject"
-                    onClick={props.onImportProject}
-                >
-                    Import
-                </button>
-            </div>
+        </div>
+        <div className={classNames(styles.menuItem)}>
+            <button
+                className={styles.viewProjectButton}
+                title="viewproject"
+                onClick={props.onImportProject}
+            >
+                Import
+            </button>
         </div>
     </Box>
 );
