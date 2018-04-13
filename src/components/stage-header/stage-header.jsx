@@ -83,46 +83,6 @@ const StageHeaderComponent = function (props) {
                 <Box className={styles.stageMenuWrapper}>
                     <Controls vm={vm} />
                     <div className={styles.stageSizeRow}>
-                        <div className={styles.stageSizeToggleGroup}>
-                            <ComingSoonTooltip
-                                place="left"
-                                tooltipId="small-stage-button"
-                            >
-                                <div
-                                    disabled
-                                    className={classNames(
-                                        styles.stageButton,
-                                        styles.stageButtonLeft,
-                                        styles.stageButtonDisabled
-                                    )}
-                                    role="button"
-                                >
-                                    <img
-                                        disabled
-                                        alt={props.intl.formatMessage(messages.smallStageSizeMessage)}
-                                        className={styles.stageButtonIcon}
-                                        draggable={false}
-                                        src={smallStageIcon}
-                                    />
-                                </div>
-                            </ComingSoonTooltip>
-                            <div>
-                                <Button
-                                    className={classNames(
-                                        styles.stageButton,
-                                        styles.stageButtonRight
-                                    )}
-                                    onClick={onSetStageLarge}
-                                >
-                                    <img
-                                        alt={props.intl.formatMessage(messages.largeStageSizeMessage)}
-                                        className={styles.stageButtonIcon}
-                                        draggable={false}
-                                        src={largeStageIcon}
-                                    />
-                                </Button>
-                            </div>
-                        </div>
                         <div>
                             <Button
                                 className={styles.stageButton}
