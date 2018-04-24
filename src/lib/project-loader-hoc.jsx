@@ -5,7 +5,8 @@ import analytics from './analytics';
 import log from './log';
 import storage from './storage';
 import {connect} from 'react-redux';
-import {serializeSounds, serializeCostumes} from 'scratch-vm/src/serialization/serialize-assets'
+import {serializeSounds, serializeCostumes} from 'scratch-vm/src/serialization/serialize-assets';
+import {setProjectName} from '../reducers/project';
 
 /* Higher Order Component to provide behavior for loading projects by id from
  * the window's hash (#this part in the url) or by projectId prop passed in from
@@ -20,6 +21,7 @@ const ProjectLoaderHOC = function (WrappedComponent) {
             this.fetchProjectId = this.fetchProjectId.bind(this);
             this.updateProject = this.updateProject.bind(this);
             this.saveProject = this.saveProject.bind(this);
+            this.onNameInputChange = e => this.props.dispatch(setProjectName(e.target.value));
             this.state = {
                 projectId: null,
                 projectData: null,
@@ -75,6 +77,10 @@ const ProjectLoaderHOC = function (WrappedComponent) {
             }
         }
         saveProject () {
+            const name = this.props.projectName;
+            if (!name) {
+                return Promise.reject(new Error('Du hast vergessen, dem Spiel einen Namen zu geben.'));
+            }
             // save assets
             const costumeAssets = serializeCostumes(this.props.vm.runtime);
             const soundAssets = serializeSounds(this.props.vm.runtime);
@@ -96,19 +102,25 @@ const ProjectLoaderHOC = function (WrappedComponent) {
                         },
                         body: JSON.stringify(asset.fileContent)
                     }))
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error('HTTP Request failed');
+                        }
+                        return res;
+                    })
             );
 
             // save project
             const data = this.props.vm.toJSON();
             const payload = {
                 data,
-                name: 'My fabulous project ✨'
+                name,
             };
             if (this.state.projectId) {
                 payload.id = this.state.projectId;
             }
 
-            Promise.all(assetPromises)
+            return Promise.all(assetPromises)
                 .then(() => fetch('/api/saveProject', {
                     method: 'POST',
                     headers: {
@@ -121,10 +133,14 @@ const ProjectLoaderHOC = function (WrappedComponent) {
                 .then(res => this.setState({
                     projectId: res.id,
                     idCreatedFlag: true
-                }));
+                }))
+                .catch(() => {
+                    throw new Error('Das hat leider nicht geklappt');
+                });
         }
         render () {
             const {
+                dispatch, // eslint-disable-line no-unused-vars
                 projectId, // eslint-disable-line no-unused-vars
                 ...componentProps
             } = this.props;
@@ -134,6 +150,7 @@ const ProjectLoaderHOC = function (WrappedComponent) {
                     fetchingProject={this.state.fetchingProject}
                     projectData={this.state.projectData}
                     saveProject={this.saveProject}
+                    onNameInputChange={this.onNameInputChange}
                     {...componentProps}
                 />
             );
@@ -143,11 +160,10 @@ const ProjectLoaderHOC = function (WrappedComponent) {
         projectId: PropTypes.string
     };
 
-    return connect(
-        state => ({
-            vm: state.vm
-        }), {}
-    )(ProjectLoaderComponent);
+    return connect(state => ({
+        vm: state.vm,
+        projectName: state.project.name
+    }))(ProjectLoaderComponent);
 };
 
 export {

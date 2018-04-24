@@ -19,6 +19,8 @@ import Box from '../box/box.jsx';
 import MenuBar from '../menu-bar/menu-bar.jsx';
 import PreviewModal from '../../containers/preview-modal.jsx';
 import WebGlModal from '../../containers/webgl-modal.jsx';
+import ModalComponent from '../modal/modal.jsx';
+import Input from '../forms/input.jsx'
 
 import layout from '../../lib/layout-constants.js';
 import styles from './gui.css';
@@ -47,6 +49,7 @@ const GUIComponent = props => {
         blocksTabVisible,
         children,
         costumesTabVisible,
+        saveProjectVisible,
         intl,
         loading,
         onExtensionButtonClick,
@@ -58,6 +61,11 @@ const GUIComponent = props => {
         saveProject,
         soundsTabVisible,
         vm,
+        onNameInputChange,
+        onSaveModalClose,
+        onSaveModalError,
+        saveModalError,
+        projectName,
         ...componentProps
     } = props;
     if (children) {
@@ -71,6 +79,10 @@ const GUIComponent = props => {
     const calcHeight = () => window.innerHeight - layout.topBarHeight - layout.stageHeaderHeight - 8;
     const calcWidth = () => window.innerWidth / 3 - (8 * 2);
 
+    const saveAction = () => {
+        onSaveModalError("");
+        saveProject().then(() => onSaveModalClose()).catch(e => onSaveModalError(e.message));
+    };
 
     const tabClassNames = {
         tabs: styles.tabs,
@@ -93,10 +105,25 @@ const GUIComponent = props => {
             {loading ? (
                 <Loader />
             ) : null}
+            {saveProjectVisible ? (
+                <ModalComponent
+                    className={styles.saveModal}
+                    contentLabel="Lege einen Namen fest"
+                    onRequestClose={onSaveModalClose}
+                >
+                    <Box className={styles.saveModalBox}>
+                        <Input placeholder="Name deines Projektes" onChange={onNameInputChange} value={projectName} />
+                        <Box className={styles.saveModalActions}>
+                            <p>{saveModalError}</p>
+                            <Button className={styles.saveModalButton} onClick={saveAction}>Speichern</Button>
+                        </Box>
+                    </Box>
+                </ModalComponent>
+            ) : null}
             {isRendererSupported ? null : (
                 <WebGlModal />
             )}
-            <MenuBar saveProject={saveProject} />
+            <MenuBar />
             <Box className={styles.bodyWrapper}>
                 <Box className={styles.flexWrapper}>
                     <Box className={styles.editorWrapper}>
@@ -210,6 +237,7 @@ GUIComponent.propTypes = {
     blocksTabVisible: PropTypes.bool,
     children: PropTypes.node,
     costumesTabVisible: PropTypes.bool,
+    saveProjectVisible: PropTypes.bool,
     intl: intlShape.isRequired,
     loading: PropTypes.bool,
     onActivateCostumesTab: PropTypes.func,
@@ -221,7 +249,10 @@ GUIComponent.propTypes = {
     previewInfoVisible: PropTypes.bool,
     saveProject: PropTypes.func,
     soundsTabVisible: PropTypes.bool,
-    vm: PropTypes.instanceOf(VM).isRequired
+    vm: PropTypes.instanceOf(VM).isRequired,
+    onSaveModalClose: PropTypes.func,
+    onNameInputChange: PropTypes.func,
+    projectName: PropTypes.string
 };
 GUIComponent.defaultProps = {
     basePath: './'

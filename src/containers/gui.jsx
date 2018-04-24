@@ -4,7 +4,7 @@ import React from 'react';
 import VM from 'scratch-vm';
 import {connect} from 'react-redux';
 
-import {openExtensionLibrary} from '../reducers/modals';
+import {openExtensionLibrary, closeSaveProject} from '../reducers/modals';
 import {
     activateTab,
     BLOCKS_TAB_INDEX,
@@ -27,6 +27,7 @@ class GUI extends React.Component {
             loadingError: false,
             errorMessage: ''
         };
+        this.onSaveModalError = (msg) => this.setState({saveModalError: msg});
     }
     componentDidMount () {
         this.audioEngine = new AudioEngine();
@@ -75,7 +76,9 @@ class GUI extends React.Component {
         return (
             <GUIComponent
                 loading={fetchingProject || this.state.loading || loadingStateVisible}
-                vm={vm}
+                vm={vm} 
+                onSaveModalError={this.onSaveModalError}
+                saveModalError={this.state.saveModalError}
                 {...componentProps}
             >
                 {children}
@@ -101,8 +104,10 @@ const mapStateToProps = state => ({
     costumesTabVisible: state.editorTab.activeTabIndex === COSTUMES_TAB_INDEX,
     loadingStateVisible: state.modals.loadingProject,
     previewInfoVisible: state.modals.previewInfo,
+    saveProjectVisible: state.modals.saveProject,
     soundsTabVisible: state.editorTab.activeTabIndex === SOUNDS_TAB_INDEX,
-    layoutmode: state.layoutMode
+    layoutmode: state.layoutMode,
+    projectName: state.project.name
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -111,6 +116,7 @@ const mapDispatchToProps = dispatch => ({
     onActivateCostumesTab: () => dispatch(activateTab(COSTUMES_TAB_INDEX)),
     onActivateSoundsTab: () => dispatch(activateTab(SOUNDS_TAB_INDEX)),
     onLayoutModeClick: () => dispatch(toggleLayoutMode()),
+    onSaveModalClose: () => dispatch(closeSaveProject()),
 });
 
 const ConnectedGUI = connect(

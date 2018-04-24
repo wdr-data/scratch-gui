@@ -32,7 +32,7 @@ const ModalComponent = props => (
                         styles.headerItemTitle
                     )}
                 >
-                    {props.contentLabel}
+                    <h2>{props.contentLabel}</h2>
                 </div>
                 <div
                     className={classNames(
