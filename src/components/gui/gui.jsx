@@ -55,6 +55,7 @@ const GUIComponent = props => {
         onActivateTab,
         onLayoutModeClick,
         previewInfoVisible,
+        saveProject,
         soundsTabVisible,
         vm,
         ...componentProps
@@ -95,7 +96,7 @@ const GUIComponent = props => {
             {isRendererSupported ? null : (
                 <WebGlModal />
             )}
-            <MenuBar />
+            <MenuBar saveProject={saveProject} />
             <Box className={styles.bodyWrapper}>
                 <Box className={styles.flexWrapper}>
                     <Box className={styles.editorWrapper}>
@@ -218,6 +219,7 @@ GUIComponent.propTypes = {
     onLayoutModeClick: PropTypes.func,
     onTabSelect: PropTypes.func,
     previewInfoVisible: PropTypes.bool,
+    saveProject: PropTypes.func,
     soundsTabVisible: PropTypes.bool,
     vm: PropTypes.instanceOf(VM).isRequired
 };
