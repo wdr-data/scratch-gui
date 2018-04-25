@@ -24,6 +24,7 @@ const ProjectLoaderHOC = function (WrappedComponent) {
             this.onNameInputChange = e => this.props.dispatch(setProjectName(e.target.value));
             this.state = {
                 projectId: null,
+                userId: 'testuser',
                 projectData: null,
                 fetchingProject: false,
                 idCreatedFlag: false
@@ -115,6 +116,7 @@ const ProjectLoaderHOC = function (WrappedComponent) {
             const payload = {
                 data,
                 name,
+                userId: this.state.userId,
             };
             if (this.state.projectId) {
                 payload.id = this.state.projectId;
