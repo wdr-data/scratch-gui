@@ -77,8 +77,10 @@ const GUIComponent = props => {
         );
     }
 
-    const calcHeight = () => window.innerHeight - layout.topBarHeight - layout.stageHeaderHeight - 8;
-    const calcWidth = () => window.innerWidth / 3 - (8 * 2);
+    const calcHeight = () =>
+        window.innerHeight / 2 - layout.topBarHeight - layout.stageHeaderHeight - 8;
+    const calcWidth = () =>
+        window.innerWidth / 3 - (8 * 2);
 
     const saveAction = () => {
         onSaveModalError("");
