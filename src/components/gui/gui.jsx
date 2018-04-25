@@ -30,6 +30,8 @@ import codeIcon from './icon--code.svg';
 import costumesIcon from './icon--costumes.svg';
 import soundsIcon from './icon--sounds.svg';
 import Button from '../button/button.jsx';
+import fullScreenIcon from '../stage-header/icon--fullscreen.svg';
+import arrowIcon from './arrow.svg'
 
 const messages = defineMessages({
     addExtension: {
@@ -78,7 +80,7 @@ const GUIComponent = props => {
     }
 
     const calcHeight = () =>
-        window.innerHeight / 2 - layout.topBarHeight - layout.stageHeaderHeight - 8;
+        (window.innerHeight - layout.topBarHeight - layout.stageHeaderHeight - 8) / 2;
     const calcWidth = () =>
         window.innerWidth / 3 - (8 * 2);
 
@@ -232,6 +234,37 @@ const GUIComponent = props => {
                                 ) : null;
                             }}</MediaQuery>
                             {/* eslint-enable arrow-body-style */}
+                        </Box>
+                        <Box className={styles.eduWrapper}>
+                            <Box className={styles.eduHeader}>
+                                <p>Placeholder text</p>
+                                <Button className={styles.fullscreenButton}>
+                                    <img
+                                        className={styles.fullscreenButtonIcon}
+                                        draggable={false}
+                                        src={fullScreenIcon}
+                                        title="Full Screen Control"
+                                    />
+                                </Button>
+                            </Box>
+                            <Box className={styles.eduFooter}>
+                                <Button className={styles.backButton}>
+                                    <img
+                                        className={styles.backButtonIcon}
+                                        draggable={false}
+                                        src={arrowIcon}
+                                        title="Back Arrow"
+                                    />
+                                </Button>
+                                <Button className={styles.forwardButton}>
+                                    <img
+                                        className={styles.forwardButtonIcon}
+                                        draggable={false}
+                                        src={arrowIcon}
+                                        title="Forward arrow"
+                                    />
+                                </Button>
+                            </Box>
                         </Box>
                     </Box>
                 </Box>
