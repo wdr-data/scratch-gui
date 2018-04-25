@@ -29,12 +29,17 @@ const ProjectLoaderHOC = function (WrappedComponent) {
                 fetchingProject: false,
                 idCreatedFlag: false
             };
+            storage.userId = this.state.userId;
         }
         componentDidMount () {
             window.addEventListener('hashchange', this.updateProject);
             this.updateProject();
         }
         componentWillUpdate (nextProps, nextState) {
+            if (this.state.userId !== nextState.userId) {
+                storage.userId = nextState.userId;
+            }
+
             if (this.state.projectId !== nextState.projectId) {
                 if (nextState.projectId && this.fetchProjectId() !== nextState.projectId) {
                     window.location.hash = `#${nextState.projectId}`;

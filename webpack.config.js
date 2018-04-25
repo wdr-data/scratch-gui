@@ -11,6 +11,11 @@ var autoprefixer = require('autoprefixer');
 var postcssVars = require('postcss-simple-vars');
 var postcssImport = require('postcss-import');
 
+require('dotenv').config();
+const bucketSuffix = process.env.BRANCH === 'production' ? 'prod' : 'staging';
+const bucketUrl = `https://${process.env.S3_BUCKET_PREFIX}-${bucketSuffix}` +
+    `.s3.dualstack.${process.env.FUNCTIONS_AWS_REGION || process.env.AWS_REGION}.amazonaws.com`;
+
 const base = {
     devtool: 'cheap-module-source-map',
     devServer: {
@@ -109,7 +114,8 @@ module.exports = [
         plugins: base.plugins.concat([
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': '"' + process.env.NODE_ENV + '"',
-                'process.env.DEBUG': Boolean(process.env.DEBUG)
+                'process.env.DEBUG': Boolean(process.env.DEBUG),
+                'process.env.S3_BUCKET_URL_PROJECT': `"${bucketUrl}"`,
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'lib',
