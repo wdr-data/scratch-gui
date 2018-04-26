@@ -124,4 +124,4 @@ const ConnectedGUI = connect(
     mapDispatchToProps,
 )(GUI);
 
-export default ProjectLoaderHOC(AppStateHOC(vmListenerHOC(ConnectedGUI)));
+export default AppStateHOC(ProjectLoaderHOC(vmListenerHOC(ConnectedGUI)));
