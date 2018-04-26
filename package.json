@@ -29,6 +29,7 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
+    "@wdr-data/scratch-storage": "^0.4.1",
     "autoprefixer": "^8.1.0",
     "aws-sdk": "^2.226.1",
     "babel-core": "^6.23.1",
@@ -100,7 +101,6 @@
     "scratch-paint": "0.2.0-prerelease.20180423143518",
     "scratch-render": "0.1.0-prerelease.20180425181730",
     "scratch-svg-renderer": "0.1.0-prerelease.20180423193917",
-    "scratch-storage": "0.4.0",
     "scratch-vm": "0.1.0-prerelease.1524520946",
     "selenium-webdriver": "3.6.0",
     "startaudiocontext": "1.2.1",
