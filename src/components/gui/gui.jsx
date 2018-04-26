@@ -22,6 +22,7 @@ import WebGlModal from '../../containers/webgl-modal.jsx';
 import ModalComponent from '../modal/modal.jsx';
 import Input from '../forms/input.jsx';
 import ProjectSaver from '../../containers/project-saver.jsx';
+import EduStage from '../edu-stage/edu-stage.jsx';
 
 import layout from '../../lib/layout-constants.js';
 import styles from './gui.css';
@@ -235,37 +236,7 @@ const GUIComponent = props => {
                             }}</MediaQuery>
                             {/* eslint-enable arrow-body-style */}
                         </Box>
-                        <Box className={styles.eduWrapper}>
-                            <Box className={styles.eduHeader}>
-                                <p>Placeholder text</p>
-                                <Button className={styles.fullscreenButton}>
-                                    <img
-                                        className={styles.fullscreenButtonIcon}
-                                        draggable={false}
-                                        src={fullScreenIcon}
-                                        title="Full Screen Control"
-                                    />
-                                </Button>
-                            </Box>
-                            <Box className={styles.eduFooter}>
-                                <Button className={styles.backButton}>
-                                    <img
-                                        className={styles.backButtonIcon}
-                                        draggable={false}
-                                        src={arrowIcon}
-                                        title="Back Arrow"
-                                    />
-                                </Button>
-                                <Button className={styles.forwardButton}>
-                                    <img
-                                        className={styles.forwardButtonIcon}
-                                        draggable={false}
-                                        src={arrowIcon}
-                                        title="Forward arrow"
-                                    />
-                                </Button>
-                            </Box>
-                        </Box>
+                        <EduStage />
                     </Box>
                 </Box>
             </Box>

@@ -7,6 +7,8 @@ import storage from './storage';
 import {connect} from 'react-redux';
 import {serializeSounds, serializeCostumes} from 'scratch-vm/src/serialization/serialize-assets';
 import {setProjectName} from '../reducers/project';
+import {initSlides} from '../reducers/edu-layer';
+import gameOne from './edu-games/game-one.json';
 
 /* Higher Order Component to provide behavior for loading projects by id from
  * the window's hash (#this part in the url) or by projectId prop passed in from
@@ -34,6 +36,7 @@ const ProjectLoaderHOC = function (WrappedComponent) {
         componentDidMount () {
             window.addEventListener('hashchange', this.updateProject);
             this.updateProject();
+            this.props.dispatch(initSlides(gameOne.length));
         }
         componentWillUpdate (nextProps, nextState) {
             if (this.state.userId !== nextState.userId) {

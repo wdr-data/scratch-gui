@@ -16,6 +16,7 @@ import stageSizeReducer from './stage-size';
 import {ScratchPaintReducer} from 'scratch-paint';
 import layoutModeReducer from './layout-mode';
 import projectReducer from './project';
+import eduLayerReducer from './edu-layer';
 
 export default combineReducers({
     blockDrag: blockDragReducer,
@@ -35,4 +36,5 @@ export default combineReducers({
     vm: vmReducer,
     scratchPaint: ScratchPaintReducer,
     project: projectReducer,
+    eduLayer: eduLayerReducer,
 });
