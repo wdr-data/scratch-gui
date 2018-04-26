@@ -20,7 +20,8 @@ import MenuBar from '../menu-bar/menu-bar.jsx';
 import PreviewModal from '../../containers/preview-modal.jsx';
 import WebGlModal from '../../containers/webgl-modal.jsx';
 import ModalComponent from '../modal/modal.jsx';
-import Input from '../forms/input.jsx'
+import Input from '../forms/input.jsx';
+import ProjectSaver from '../../containers/project-saver.jsx';
 
 import layout from '../../lib/layout-constants.js';
 import styles from './gui.css';
@@ -117,6 +118,11 @@ const GUIComponent = props => {
                             <p>{saveModalError}</p>
                             <Button className={styles.saveModalButton} onClick={saveAction}>Speichern</Button>
                         </Box>
+                        <ProjectSaver>{downloadProject => (
+                            <Button className={styles.saveModalDownload} onClick={downloadProject}>
+                                Projekt herunterladen
+                            </Button>
+                        )}</ProjectSaver>
                     </Box>
                 </ModalComponent>
             ) : null}
