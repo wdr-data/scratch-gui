@@ -76,7 +76,7 @@ class GUI extends React.Component {
         return (
             <GUIComponent
                 loading={fetchingProject || this.state.loading || loadingStateVisible}
-                vm={vm} 
+                vm={vm}
                 onSaveModalError={this.onSaveModalError}
                 saveModalError={this.state.saveModalError}
                 {...componentProps}
