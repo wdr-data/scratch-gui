@@ -106,7 +106,7 @@ const ProjectLoaderHOC = function (WrappedComponent) {
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(asset.fileContent)
+                        body: asset.fileContent
                     }))
                     .then(res => {
                         if (!res.ok) {
