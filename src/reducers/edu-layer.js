@@ -1,29 +1,26 @@
-const INIT_SLIDES = 'scratch-gui/edu-layer/INIT_SLIDES'
 const NEXT_SLIDE = 'scratch-gui/edu-layer/NEXT_SLIDE'
 const PREVIOUS_SLIDE = 'scratch-gui/edu-layer/PREVIOUS_SLIDE'
 const TOGGLE_FULLSCREEN = 'scratch-gui/edu-layer/TOGGLE_FULLSCREEN'
+const LOAD_GAME = 'scratch-gui/edu-layer/LOAD_GAME'
 
 const initialState = {
     size: 0,
     index: 0,
     isFullscreen: false,
+    enabled: false,
+    gameId: null,
+    gameSpec: null,
 };
 
 export default function (state = initialState, action) {
     switch(action.type) {
-    case INIT_SLIDES:
-        return {
-            ...state,
-            size: action.size,
-            index: 0,
-        };
     case NEXT_SLIDE:
         if (state.index >= state.size - 1) {
             return state;
         }
         return {
             ...state,
-            index: state.index + 1, 
+            index: state.index + 1,
         };
     case PREVIOUS_SLIDE:
         if (state.index <= 0) {
@@ -38,17 +35,18 @@ export default function (state = initialState, action) {
             ...state,
             isFullscreen: !state.isFullscreen,
         }
-    default: 
+    case LOAD_GAME:
+        return {
+            ...state,
+            size: action.gameSpec ? action.gameSpec.length : 0,
+            enabled: action.gameId !== null,
+            gameId: action.gameId,
+            gameSpec: action.gameSpec,
+        }
+    default:
         return state
     }
 };
-
-export function initSlides (size) {
-    return {
-        type: INIT_SLIDES,
-        size
-    }
-} 
 
 export function nextSlide () {
     return {
@@ -65,5 +63,13 @@ export function previousSlide () {
 export function toggleFullscreen () {
     return {
         type: TOGGLE_FULLSCREEN,
+    }
+}
+
+export function loadGame (gameId, gameSpec) {
+    return {
+        type: LOAD_GAME,
+        gameId,
+        gameSpec
     }
 }

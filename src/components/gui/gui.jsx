@@ -267,6 +267,6 @@ GUIComponent.propTypes = {
     projectName: PropTypes.string
 };
 GUIComponent.defaultProps = {
-    basePath: './'
+    basePath: '/'
 };
 export default injectIntl(GUIComponent);
