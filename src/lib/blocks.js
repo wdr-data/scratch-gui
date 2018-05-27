@@ -1,4 +1,4 @@
-import ScratchBlocks from 'scratch-blocks';
+import ScratchBlocks from '@wdr-data/scratch-blocks';
 
 /**
  * Connect scratch blocks with the vm
@@ -128,13 +128,6 @@ export default function (vm) {
     ScratchBlocks.Blocks.sensing_of_object_menu.init = function () {
         const json = jsonForMenuBlock('OBJECT', spriteMenu, sensingColors, [
             ['Stage', '_stage_']
-        ]);
-        this.jsonInit(json);
-    };
-
-    ScratchBlocks.Blocks.sensing_videoonmenutwo.init = function () {
-        const json = jsonForMenuBlock('VIDEOONMENU2', spriteMenu, sensingColors, [
-            ['stage', 'STAGE']
         ]);
         this.jsonInit(json);
     };
